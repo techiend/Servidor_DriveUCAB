@@ -168,8 +168,8 @@ public class Start {
 
         channel.write(ByteBuffer.wrap(respuestalogin.toString().getBytes()));
 
-        channel.shutdownOutput();
-        key.cancel();
+//        channel.shutdownOutput();
+//        key.cancel();
     }
 
     public void doRegistro(JSONObject recibe, SocketChannel channel, SelectionKey key) throws IOException {
@@ -191,8 +191,8 @@ public class Start {
 
         channel.write(ByteBuffer.wrap(respuestaregistro.toString().getBytes()));
 
-        channel.shutdownOutput();
-        key.cancel();
+//        channel.shutdownOutput();
+//        key.cancel();
 
     }
 
@@ -214,8 +214,8 @@ public class Start {
 
                         channel.write(ByteBuffer.wrap(respuestalist.toString().getBytes()));
 
-        channel.shutdownOutput();
-        key.cancel();
+//        channel.shutdownOutput();
+//        key.cancel();
     }
 
 
