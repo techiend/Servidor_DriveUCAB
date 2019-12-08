@@ -32,7 +32,7 @@ public class Registro {
 
             if (rs.next()){
 
-                File file = new File("/home/techiend/REDES/USERS/"+data.getString("email"));
+                File file = new File("/home/cverde/REDES/USERS/"+data.getString("email"));
 
                 if (file.mkdir()) {
 

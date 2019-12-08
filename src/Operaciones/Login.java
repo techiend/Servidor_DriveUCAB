@@ -44,7 +44,7 @@ public class Login {
                     respuesta.put("u_max", manageSize(maxSpace));
                     respuesta.put("u_pwd", data.getString("email")+"/");
 
-                    File userDir = new File("/home/techiend/REDES/USERS/"+data.getString("email")+"/");
+                    File userDir = new File("/home/cverde/REDES/USERS/"+data.getString("email")+"/");
 
                     File[] dirFiles = userDir.listFiles();
 
