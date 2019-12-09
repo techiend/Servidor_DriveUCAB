@@ -42,6 +42,7 @@ public class Login {
                     respuesta.put("u_name", rs.getString("user_name"));
                     respuesta.put("u_lname", rs.getString("user_lname"));
                     respuesta.put("u_max", manageSize(maxSpace));
+                    respuesta.put("u_max_num", maxSpace);
                     respuesta.put("u_pwd", data.getString("email")+"/");
 
                     File userDir = new File("/home/cverde/REDES/USERS/"+data.getString("email")+"/");
