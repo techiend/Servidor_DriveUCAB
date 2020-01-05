@@ -13,7 +13,8 @@ public class DBClass {
 
         try {
             HikariConfig configUM = new HikariConfig();
-            configUM.setJdbcUrl("jdbc:postgresql://localhost/redes2");
+            configUM.setJdbcUrl("jdbc:postgresql://24.63.57.90:5432/redes2");
+//            configUM.setJdbcUrl("jdbc:postgresql://192.168.43.176:5432/redes2");
             configUM.setUsername("postgres");
             configUM.setPassword("123456");
             configUM.setDriverClassName("org.postgresql.Driver");

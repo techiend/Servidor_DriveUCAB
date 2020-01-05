@@ -1,6 +1,4 @@
-import Operaciones.ListPwd;
-import Operaciones.Login;
-import Operaciones.Registro;
+import Operaciones.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -76,7 +74,7 @@ public class Start {
     private void read(SelectionKey key) throws IOException, InterruptedException, ParseException
     {
         SocketChannel channel = (SocketChannel) key.channel();
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        ByteBuffer buffer = ByteBuffer.allocate(12280);
         int numRead = -1;
         try {
             numRead = channel.read(buffer);
@@ -118,11 +116,19 @@ public class Start {
 
 
                         break;
-                    case "size":
+                    case "create":
+
+                        doCreate(recibe, channel, key);
+
                         break;
                     case "list":
 
                         doList(recibe, channel, key);
+
+                        break;
+                    case "erase":
+
+                        doErase(recibe, channel, key);
 
                         break;
 
@@ -166,7 +172,7 @@ public class Start {
 
         System.out.println("Login responde: "+respuestalogin.toString(1));
 
-        channel.write(ByteBuffer.wrap(respuestalogin.toString().getBytes()));
+        channel.write(ByteBuffer.wrap(respuestalogin.toString().getBytes("UTF-8")));
 
 //        channel.shutdownOutput();
 //        key.cancel();
@@ -189,7 +195,7 @@ public class Start {
 
         System.out.println("Registro responde: "+respuestaregistro.toString(1));
 
-        channel.write(ByteBuffer.wrap(respuestaregistro.toString().getBytes()));
+        channel.write(ByteBuffer.wrap(respuestaregistro.toString().getBytes("UTF-8")));
 
 //        channel.shutdownOutput();
 //        key.cancel();
@@ -212,7 +218,51 @@ public class Start {
 
                         System.out.println("ListPwd responde: "+respuestalist.toString(1));
 
-                        channel.write(ByteBuffer.wrap(respuestalist.toString().getBytes()));
+                        channel.write(ByteBuffer.wrap(respuestalist.toString().getBytes("UTF-8")));
+
+//        channel.shutdownOutput();
+//        key.cancel();
+    }
+
+    public void doCreate(JSONObject recibe, SocketChannel channel, SelectionKey key) throws IOException {
+
+        System.out.println("Create directorio.\n");
+
+        System.out.println(recibe.toString(1));
+
+//                        JSONObject dataLogin = new JSONObject();
+//
+//                        dataLogin.put("pwd","cverde22@gmail.com/testeo/");
+//                        dataLogin.put("email","cverde22@gmail.com");
+//
+        CreateDir createDir = new CreateDir();
+        JSONObject respuestalist= createDir.doCreateDir(recibe);
+
+        System.out.println("CreateDir responde: "+respuestalist.toString(1));
+
+        channel.write(ByteBuffer.wrap(respuestalist.toString().getBytes("UTF-8")));
+
+//        channel.shutdownOutput();
+//        key.cancel();
+    }
+
+    public void doErase(JSONObject recibe, SocketChannel channel, SelectionKey key) throws IOException {
+
+        System.out.println("Erase something.\n");
+
+        System.out.println(recibe.toString(1));
+
+//                        JSONObject dataLogin = new JSONObject();
+//
+//                        dataLogin.put("pwd","cverde22@gmail.com/testeo/");
+//                        dataLogin.put("email","cverde22@gmail.com");
+//
+        EraseSomething eraseSomething = new EraseSomething();
+        JSONObject respuestalist= eraseSomething.doErase(recibe);
+
+        System.out.println("EraseSomething responde: "+respuestalist.toString(1));
+
+        channel.write(ByteBuffer.wrap(respuestalist.toString().getBytes("UTF-8")));
 
 //        channel.shutdownOutput();
 //        key.cancel();

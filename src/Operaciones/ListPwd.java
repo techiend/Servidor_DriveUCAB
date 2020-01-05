@@ -18,7 +18,7 @@ public class ListPwd {
 
         try {
 
-            File userDir = new File("/home/techiend/REDES/USERS/" + data.getString("pwd"));
+            File userDir = new File("/home/cverde/REDES/USERS/" + data.getString("pwd"));
             File[] dirFiles = userDir.listFiles();
 
             JSONArray userFiles = new JSONArray();
