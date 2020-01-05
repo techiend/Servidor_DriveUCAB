@@ -44,7 +44,8 @@ public class Main {
 
         Runnable runnableS = () ->{
             try{
-                new Start("24.63.57.111", 23315).startServer();
+                new Start("24.63.57.118", 23315).startServer();
+//                new Start("192.168.43.146", 23315).startServer();
             }
             catch (InterruptedException e){
                 e.printStackTrace();
