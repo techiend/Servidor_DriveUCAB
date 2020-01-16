@@ -1,3 +1,4 @@
+import DBHelper.Constantes;
 import DBHelper.DBClass;
 import sun.misc.Signal;
 import sun.misc.SignalHandler;
@@ -40,12 +41,13 @@ public class Main {
         Signal.handle(new Signal("INT"), signalHandler);
     }
 
-    public static void initServer() {
+    public static void initServer(String IP, int port) {
 
         Runnable runnableS = () ->{
             try{
-                new Start("24.63.57.118", 23315).startServer();
+//                new Start("24.63.57.118", 23315).startServer();
 //                new Start("192.168.43.146", 23315).startServer();
+                new Start(IP, port).startServer();
             }
             catch (InterruptedException e){
                 e.printStackTrace();
@@ -64,9 +66,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        signalHandler();
-        signalHandlerkill();
-        initServer();
+        if (args.length > 0) {
+            signalHandler();
+            signalHandlerkill();
+            initServer(args[0], Integer.parseInt(args[1]));
+            Constantes constantes = Constantes.getInstance();
+            constantes.setIp_db(args[2]);
+            constantes.setPort_db(args[3]);
+            constantes.setUrl();
+        }
+        else
+            System.out.println("Por favor, introducir IP y puerto del Servidor y la DB.");
 
 
     }
